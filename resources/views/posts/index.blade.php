@@ -14,8 +14,9 @@
         	<h2> Hello from open source track ^_^ </h2>
         @endif
             @foreach ($posts as $post)
-              <li> <h3> Title : {{$post->title}}  </h3></li>
+              <li> <h3> Title :<a href="/post/{{$post->id}}"> {{$post->title}} </a>  </h3></li>
               <h4> Content: {{$post->content}}  </h4>
+               <a href="/post/delete/{{$post->id}}"> Delete </a>  
              
             @endforeach
     </ul>

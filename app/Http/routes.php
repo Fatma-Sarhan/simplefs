@@ -23,3 +23,5 @@ Route::auth();
 
 Route::get('/index', 'PostsController@index');
 Route::post('/post/add', 'PostsController@add');
+Route::get('/post/{post}', 'PostsController@show');
+Route::get('/post/delete/{post}', 'PostsController@delete');

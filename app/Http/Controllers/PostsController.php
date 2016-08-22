@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Post;
 use App\Http\Requests;
+use Carbon\Carbon;
 
 
 class PostsController extends Controller
@@ -39,12 +40,33 @@ class PostsController extends Controller
     	
 	    	$post->title = $request->title;
 	    	$post->content = $request->content ;
+            $post->created_at = Carbon::now();
+            $post->updated_at = Carbon::now();
 	    	$post->save();
 	    	
 	    	return back();
 	    	// return $request->all();
-        }
+        }   	
+    } 
 
-    	
-    }    
+    public function show($id)
+        {
+            $post = Post::find($id);
+            return view ('posts.show',compact('post'));
+        } 
+
+    public function delete($id)
+        {
+            $post = Post::find($id);
+            if($post)
+            {
+                $post->delete();
+                return back();
+            }
+            else
+            {
+                return view ('posts.index',compact('post'));
+            }
+            
+        }     
 }
